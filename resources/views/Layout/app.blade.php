@@ -28,7 +28,10 @@
 
         .content {
             flex: 1;
-            /* Pushes the footer down */
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #4255FF !important;
         }
 
         .poppins-thin {
