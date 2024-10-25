@@ -17,16 +17,12 @@
         body {
             height: 100%;
             margin: 0;
-        }
-
-        .container {
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
-            /* Full height of the viewport */
         }
 
-        .content {
+        /* Main container should grow and take up available space */
+        main {
             flex: 1;
         }
 
@@ -142,6 +138,7 @@
             font-style: italic;
         }
     </style>
+    @yield('styles')
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -151,24 +148,18 @@
         @include('Layout.navbar')
     </header>
 
-    <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <!-- Include Sidebar -->
-                    @include('Layout.sidebar')
-                </div>
-                <div class="col-md-9">
-                    <!-- Page-specific content goes here -->
-                    @yield('content')
-                </div>
-            </div>
-        </div>
+    <main style="margin-bottom: 200px">
+        @yield('content')
     </main>
     <!-- Horizontal Rule before Footer -->
     <hr class="my-4" style="border-color: #D9DDE8; border-width: 2px; width: 80%; margin: 0 auto;">
 
     @include('Layout.footer')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 
 </html>
