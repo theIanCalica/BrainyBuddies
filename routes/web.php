@@ -16,11 +16,13 @@ Route::get("/contact", function () {
     return view("contact");
 })->name("contact");
 
-
+Route::get("/test", function () {
+    return view("test");
+});
 
 
 Route::get('/basic-addition', [QuestionController::class, 'basicAddition'])->name("basicadditions");
-Route::get('/test/easy', [TestController::class, 'startEasy'])->name('test.easy');
+Route::get('/test/easy', [QuestionController::class, 'getEasyAdditionQuestions'])->name('test.easy');
 Route::get('/test/medium', [TestController::class, 'startMedium'])->name('test.medium');
 Route::get('/test/hard', [TestController::class, 'startHard'])->name('test.hard');
 

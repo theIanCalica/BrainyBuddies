@@ -31,6 +31,46 @@ class QuestionController extends Controller
         return view('basicAddition', compact('easyCount', 'mediumCount', 'hardCount'));
     }
 
+    public function getEasyAdditionQuestions()
+    {
+        // Find the subject for Basic Addition
+        $subject = Subject::where('name', 'Basic Addition')->first();
+
+        // Fetch all easy questions for the Basic Addition subject
+        $easyQuestions = Question::where('subject_id', $subject->id)
+            ->whereHas('level', function ($query) {
+                $query->where('name', 'easy');
+            })->get();
+
+        dd($easyQuestions);
+        // Return a view or JSON response with the questions
+        // return view('easyAdditionQuestions', compact('easyQuestions'));
+    }
+
+    public function getMediumAdditionQuestions()
+    {
+        // Find the subject for Basic Addition
+        $subject = Subject::where('name', 'Basic Addition')->first();
+
+        // Fetch all medium questions for the Basic Addition subject
+        $easyQuestions = Question::where('subject_id', $subject->id)
+            ->whereHas('level', function ($query) {
+                $query->where('name', 'medium');
+            })->get();
+    }
+
+    public function getHardAdditionQuestions()
+    {
+        // Find the subject for Basic Addition
+        $subject = Subject::where('name', 'Basic Addition')->first();
+
+        // Fetch all hard questions for the Basic Addition subject
+        $easyQuestions = Question::where('subject_id', $subject->id)
+            ->whereHas('level', function ($query) {
+                $query->where('name', 'hard');
+            })->get();
+    }
+
     public function basicSubtraction()
     {
         $subject = Subject::where("name", "Basic Subtraction")->first();
