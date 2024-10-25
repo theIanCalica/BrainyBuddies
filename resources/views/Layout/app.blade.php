@@ -165,6 +165,8 @@
             </div>
         </div>
     </main>
+    <!-- Horizontal Rule before Footer -->
+    <hr class="my-4" style="border-color: #D9DDE8; border-width: 2px; width: 80%; margin: 0 auto;">
 
     @include('Layout.footer')
 </body>
