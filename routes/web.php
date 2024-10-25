@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\QuestionController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -15,22 +17,13 @@ Route::get("/contact", function () {
 })->name("contact");
 
 
-Route::get("/counting", function () {
-    return view("counting");
-})->name("counting");
 
-Route::get("/numberRecognition", function () {
-    return view("numberRecognition");
-})->name("numberRecognition");
 
-Route::get("/basicAddition", function () {
-    return view("basicAddition");
-})->name("basicAddition");
+Route::get('/basic-addition', [QuestionController::class, 'basicAddition'])->name("basicadditions");
+Route::get('/test/easy', [TestController::class, 'startEasy'])->name('test.easy');
+Route::get('/test/medium', [TestController::class, 'startMedium'])->name('test.medium');
+Route::get('/test/hard', [TestController::class, 'startHard'])->name('test.hard');
 
-Route::get("/basicSubtraction", function () {
-    return view("basicSubtraction");
-})->name("basicSubtraction");
 
-Route::get("/shapeRecognition", function () {
-    return view("shapeRecognition");
-})->name("shapeRecognition");
+Route::get("/basic-subtraction", [QuestionController::class, "basicSubtraction"])->name("basicSubtraction");
+Route::get("/number-recognition", [QuestionController::class, "numberRecognition"])->name("numberRecognition");

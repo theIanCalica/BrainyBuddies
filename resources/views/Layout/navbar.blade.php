@@ -19,24 +19,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Study Tools
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('flashcards') }}">Flashcards</a></li>
-                        <li><a class="dropdown-item" href="{{ route('tests') }}">Tests</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
                         Math Subjects
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('counting') }}">Counting</a></li>
                         <li><a class="dropdown-item" href="{{ route('numberRecognition') }}">Number Recognition</a></li>
-                        <li><a class="dropdown-item" href="{{ route('basicAddition') }}">Basic Addition</a></li>
+                        <li><a class="dropdown-item" href="{{ route('basicadditions') }}">Basic Addition</a></li>
                         <li><a class="dropdown-item" href="{{ route('basicSubtraction') }}">Basic Subtraction</a></li>
-                        <li><a class="dropdown-item" href="{{ route('shapeRecognition') }}">Shape Recognition</a></li>
                     </ul>
                 </li>
             </ul>

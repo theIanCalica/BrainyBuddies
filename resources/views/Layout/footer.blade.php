@@ -14,14 +14,7 @@
                 </ul>
             </div>
 
-            <!-- For Students Section -->
-            <div class="col-md-3 text-center">
-                <h5 class="text-dark">For Students</h5>
-                <ul class="list-unstyled">
-                    <li><a href="/flashcards" class="text-muted small hover:text-dark">Flashcards</a></li>
-                    <li><a href="/test" class="text-muted small hover:text-dark">Test</a></li>
-                </ul>
-            </div>
+
 
             <!-- Contact Us Section with Flat Icons -->
             <div class="col-md-3 text-center">
