@@ -31,44 +31,28 @@ class QuestionController extends Controller
         return view('basicAddition', compact('easyCount', 'mediumCount', 'hardCount'));
     }
 
-    public function getEasyAdditionQuestions()
+    public function basicAdditionQuiz($difficulty)
     {
         // Find the subject for Basic Addition
         $subject = Subject::where('name', 'Basic Addition')->first();
 
-        // Fetch all easy questions for the Basic Addition subject
-        $easyQuestions = Question::where('subject_id', $subject->id)
-            ->whereHas('level', function ($query) {
-                $query->where('name', 'easy');
+        if (!$subject) {
+            abort(404, 'Subject not found');
+        }
+
+        // Fetch questions based on the chosen difficulty
+        $questions = Question::where('subject_id', $subject->id)
+            ->whereHas('level', function ($query) use ($difficulty) {
+                $query->where('name', $difficulty);
             })->get();
 
-        dd($easyQuestions);
-        // Return a view or JSON response with the questions
-        // return view('easyAdditionQuestions', compact('easyQuestions'));
-    }
+        if ($questions->isEmpty()) {
+            abort(404, 'No questions found for this difficulty level');
+        }
 
-    public function getMediumAdditionQuestions()
-    {
-        // Find the subject for Basic Addition
-        $subject = Subject::where('name', 'Basic Addition')->first();
 
-        // Fetch all medium questions for the Basic Addition subject
-        $easyQuestions = Question::where('subject_id', $subject->id)
-            ->whereHas('level', function ($query) {
-                $query->where('name', 'medium');
-            })->get();
-    }
-
-    public function getHardAdditionQuestions()
-    {
-        // Find the subject for Basic Addition
-        $subject = Subject::where('name', 'Basic Addition')->first();
-
-        // Fetch all hard questions for the Basic Addition subject
-        $easyQuestions = Question::where('subject_id', $subject->id)
-            ->whereHas('level', function ($query) {
-                $query->where('name', 'hard');
-            })->get();
+        // Pass both questions and difficulty to the view
+        return view('test', compact('questions', 'difficulty')); // Make sure to include 'difficulty'
     }
 
     public function basicSubtraction()
@@ -92,6 +76,30 @@ class QuestionController extends Controller
             })->count();
 
         return view("basicSubtraction", compact("easyCount", "mediumCount", "hardCount"));
+    }
+
+    public function basicSubtractionQuiz($difficulty)
+    {
+        // Find the subject for Basic Addition
+        $subject = Subject::where('name', 'Basic Subtraction')->first();
+
+        if (!$subject) {
+            abort(404, 'Subject not found');
+        }
+
+        // Fetch questions based on the chosen difficulty
+        $questions = Question::where('subject_id', $subject->id)
+            ->whereHas('level', function ($query) use ($difficulty) {
+                $query->where('name', $difficulty);
+            })->get();
+
+        if ($questions->isEmpty()) {
+            abort(404, 'No questions found for this difficulty level');
+        }
+
+
+        // Pass both questions and difficulty to the view
+        return view('test', compact('questions', 'difficulty'));
     }
 
     public function numberRecognition()

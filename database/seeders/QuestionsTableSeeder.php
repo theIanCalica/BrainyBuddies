@@ -20,27 +20,6 @@ class QuestionsTableSeeder extends Seeder
 
         // Sample questions and their corresponding answers
         $questions = [
-            // Number Recognition - Easy (5 questions)
-            ['subject' => 'Number Recognition', 'level' => 'Easy', 'text' => 'Which number is shown in the picture?', 'correct_answer' => '2'],
-            ['subject' => 'Number Recognition', 'level' => 'Easy', 'text' => 'Identify the number 5 in the group.', 'correct_answer' => '5'],
-            ['subject' => 'Number Recognition', 'level' => 'Easy', 'text' => 'What number is this?', 'correct_answer' => '3'],
-            ['subject' => 'Number Recognition', 'level' => 'Easy', 'text' => 'Point to the number 7 in the image.', 'correct_answer' => '7'],
-            ['subject' => 'Number Recognition', 'level' => 'Easy', 'text' => 'What number comes after 3?', 'correct_answer' => '4'],
-
-            // Number Recognition - Medium (5 questions)
-            ['subject' => 'Number Recognition', 'level' => 'Medium', 'text' => 'Identify the number that comes after 7.', 'correct_answer' => '8'],
-            ['subject' => 'Number Recognition', 'level' => 'Medium', 'text' => 'What is the number before 10?', 'correct_answer' => '9'],
-            ['subject' => 'Number Recognition', 'level' => 'Medium', 'text' => 'Identify the number between 4 and 6.', 'correct_answer' => '5'],
-            ['subject' => 'Number Recognition', 'level' => 'Medium', 'text' => 'What number is missing in this sequence: 5, __, 7, 8?', 'correct_answer' => '6'],
-            ['subject' => 'Number Recognition', 'level' => 'Medium', 'text' => 'Which of these numbers is the largest?', 'correct_answer' => '9'],
-
-            // Number Recognition - Hard (5 questions)
-            ['subject' => 'Number Recognition', 'level' => 'Hard', 'text' => 'Identify the missing number: 12, __, 14, 15.', 'correct_answer' => '13'],
-            ['subject' => 'Number Recognition', 'level' => 'Hard', 'text' => 'What number is shown as XXIV in Roman numerals?', 'correct_answer' => '24'],
-            ['subject' => 'Number Recognition', 'level' => 'Hard', 'text' => 'What is the square of 5?', 'correct_answer' => '25'],
-            ['subject' => 'Number Recognition', 'level' => 'Hard', 'text' => 'Identify the number in this pattern: 2, 4, 8, 16, __.', 'correct_answer' => '32'],
-            ['subject' => 'Number Recognition', 'level' => 'Hard', 'text' => 'What number is this? 10?', 'correct_answer' => '10'],
-
             // Basic Addition - Easy (5 questions)
             ['subject' => 'Basic Addition', 'level' => 'Easy', 'text' => 'What is 1 + 1?', 'correct_answer' => '2'],
             ['subject' => 'Basic Addition', 'level' => 'Easy', 'text' => 'How much is 2 + 3?', 'correct_answer' => '5'],
@@ -103,7 +82,7 @@ class QuestionsTableSeeder extends Seeder
                 'updated_at' => now(),
             ]);
 
-            // Insert incorrect answers (customize this part as needed)
+            // Insert incorrect answers
             $incorrect_answers = $this->getIncorrectAnswers($question['correct_answer']);
             foreach ($incorrect_answers as $incorrect_answer) {
                 DB::table('answers')->insert([
@@ -120,15 +99,41 @@ class QuestionsTableSeeder extends Seeder
     private function getIncorrectAnswers($correct_answer)
     {
         // Provide a list of incorrect answers based on the type of question
-        // Modify as per your requirements or database values
         $incorrect_answers = [
             '1' => ['0', '3', '4', '5'],
             '2' => ['1', '3', '4', '6'],
             '3' => ['1', '2', '4', '5'],
-            // Add more incorrect answers according to the correct answers
+            '4' => ['3', '5', '6', '7'],
+            '5' => ['2', '6', '7', '8'],
+            '6' => ['4', '5', '7', '8'],
+            '7' => ['5', '6', '8', '9'],
+            '8' => ['6', '7', '9', '10'],
+            '9' => ['7', '8', '10', '11'],
+            '10' => ['8', '9', '11', '12'],
+            '11' => ['9', '10', '12', '13'],
+            '12' => ['10', '11', '13', '14'],
+            '13' => ['11', '12', '14', '15'],
+            '14' => ['12', '13', '15', '16'],
+            '15' => ['13', '14', '16', '17'],
+            '16' => ['14', '15', '17', '18'],
+            '17' => ['15', '16', '18', '19'],
+            '18' => ['16', '17', '19', '20'],
+            '19' => ['17', '18', '20', '21'],
+            '20' => ['18', '19', '21', '22'],
+            '21' => ['19', '20', '22', '23'],
+            '22' => ['20', '21', '23', '24'],
+            '23' => ['21', '22', '24', '25'],
+            '24' => ['22', '23', '25', '26'],
+            '25' => ['23', '24', '26', '27'],
+            '26' => ['24', '25', '27', '28'],
+            '27' => ['25', '26', '28', '29'],
+            '28' => ['26', '27', '29', '30'],
+            '29' => ['27', '28', '30', '31'],
+            '30' => ['28', '29', '31', '32'],
+            // Add more mappings as necessary
         ];
 
-        // Return a set of incorrect answers based on the provided correct answer
+        // Ensure there are enough incorrect answers
         return $incorrect_answers[$correct_answer] ?? [];
     }
 }

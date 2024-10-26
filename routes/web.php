@@ -22,10 +22,9 @@ Route::get("/test", function () {
 
 
 Route::get('/basic-addition', [QuestionController::class, 'basicAddition'])->name("basicadditions");
-Route::get('/test/easy', [QuestionController::class, 'getEasyAdditionQuestions'])->name('test.easy');
-Route::get('/test/medium', [TestController::class, 'startMedium'])->name('test.medium');
-Route::get('/test/hard', [TestController::class, 'startHard'])->name('test.hard');
+Route::get('/basic-addition/{difficulty}', [QuestionController::class, 'basicAdditionQuiz'])->name('basicAdditionTest');
 
 
 Route::get("/basic-subtraction", [QuestionController::class, "basicSubtraction"])->name("basicSubtraction");
+Route::get("/basic-subtraction/{difficulty}", [QuestionController::class, "basicSubtractionQuiz"])->name("basicSubtractionTest");
 Route::get("/number-recognition", [QuestionController::class, "numberRecognition"])->name("numberRecognition");
