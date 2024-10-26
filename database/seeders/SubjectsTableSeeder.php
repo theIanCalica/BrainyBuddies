@@ -13,9 +13,10 @@ class SubjectsTableSeeder extends Seeder
     public function run(): void
     {
         DB::table('subjects')->insert([
-            ['name' => 'Number Recognition'],
             ['name' => 'Basic Addition'],
             ['name' => 'Basic Subtraction'],
+            ['name' => 'Basic Multiplication'],
+            ['name' => 'Basic Division'],
         ]);
     }
 }

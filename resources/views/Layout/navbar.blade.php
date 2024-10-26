@@ -22,9 +22,11 @@
                         Math Subjects
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ route('numberRecognition') }}">Number Recognition</a></li>
                         <li><a class="dropdown-item" href="{{ route('basicadditions') }}">Basic Addition</a></li>
                         <li><a class="dropdown-item" href="{{ route('basicSubtraction') }}">Basic Subtraction</a></li>
+                        <li><a class="dropdown-item" href="{{ route('basicMultiplication') }}">Basic Multiplication</a>
+                        </li>
+                        <li><a class="dropdown-item" href="{{ route('basicDivision') }}">Basic Division</a></li>
                     </ul>
                 </li>
             </ul>

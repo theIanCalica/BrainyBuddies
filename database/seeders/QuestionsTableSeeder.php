@@ -61,6 +61,48 @@ class QuestionsTableSeeder extends Seeder
             ['subject' => 'Basic Subtraction', 'level' => 'Hard', 'text' => 'If you subtract 77 from 100, what do you get?', 'correct_answer' => '23'],
             ['subject' => 'Basic Subtraction', 'level' => 'Hard', 'text' => 'What is the result of 500 - 275?', 'correct_answer' => '225'],
             ['subject' => 'Basic Subtraction', 'level' => 'Hard', 'text' => 'How much is 75 - 25?', 'correct_answer' => '50'],
+
+            // Basic Multiplication - Easy (5 questions)
+            ['subject' => 'Basic Multiplication', 'level' => 'Easy', 'text' => 'What is 1 x 1?', 'correct_answer' => '1'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Easy', 'text' => 'How much is 2 x 3?', 'correct_answer' => '6'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Easy', 'text' => 'What do you get when you multiply 4 and 2?', 'correct_answer' => '8'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Easy', 'text' => 'If you have 5 groups of 2 apples, how many apples do you have?', 'correct_answer' => '10'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Easy', 'text' => 'What is 3 x 3?', 'correct_answer' => '9'],
+
+            // Basic Multiplication - Medium (5 questions)
+            ['subject' => 'Basic Multiplication', 'level' => 'Medium', 'text' => 'What is 7 x 5?', 'correct_answer' => '35'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Medium', 'text' => 'How much is 6 x 8?', 'correct_answer' => '48'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Medium', 'text' => 'If you multiply 9 and 4, what do you get?', 'correct_answer' => '36'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Medium', 'text' => 'What is 10 x 10?', 'correct_answer' => '100'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Medium', 'text' => 'How much is 12 x 3?', 'correct_answer' => '36'],
+
+            // Basic Multiplication - Hard (5 questions)
+            ['subject' => 'Basic Multiplication', 'level' => 'Hard', 'text' => 'What is 15 x 15?', 'correct_answer' => '225'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Hard', 'text' => 'How much is 20 x 30?', 'correct_answer' => '600'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Hard', 'text' => 'If you multiply 25 and 37, what do you get?', 'correct_answer' => '925'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Hard', 'text' => 'What is the product of 100 x 200?', 'correct_answer' => '20000'],
+            ['subject' => 'Basic Multiplication', 'level' => 'Hard', 'text' => 'What is 45 x 55?', 'correct_answer' => '2475'],
+
+            // Basic Division - Easy (5 questions)
+            ['subject' => 'Basic Division', 'level' => 'Easy', 'text' => 'What is 4 ÷ 2?', 'correct_answer' => '2'],
+            ['subject' => 'Basic Division', 'level' => 'Easy', 'text' => 'How much is 6 ÷ 3?', 'correct_answer' => '2'],
+            ['subject' => 'Basic Division', 'level' => 'Easy', 'text' => 'What do you get when you divide 8 by 4?', 'correct_answer' => '2'],
+            ['subject' => 'Basic Division', 'level' => 'Easy', 'text' => 'If you have 10 apples and divide them into 5 groups, how many apples are in each group?', 'correct_answer' => '2'],
+            ['subject' => 'Basic Division', 'level' => 'Easy', 'text' => 'What is 9 ÷ 3?', 'correct_answer' => '3'],
+
+            // Basic Division - Medium (5 questions)
+            ['subject' => 'Basic Division', 'level' => 'Medium', 'text' => 'What is 15 ÷ 5?', 'correct_answer' => '3'],
+            ['subject' => 'Basic Division', 'level' => 'Medium', 'text' => 'How much is 20 ÷ 4?', 'correct_answer' => '5'],
+            ['subject' => 'Basic Division', 'level' => 'Medium', 'text' => 'If you divide 30 by 6, what do you get?', 'correct_answer' => '5'],
+            ['subject' => 'Basic Division', 'level' => 'Medium', 'text' => 'What is the result of 50 ÷ 10?', 'correct_answer' => '5'],
+            ['subject' => 'Basic Division', 'level' => 'Medium', 'text' => 'What do you get when you divide 100 by 25?', 'correct_answer' => '4'],
+
+            // Basic Division - Hard (5 questions)
+            ['subject' => 'Basic Division', 'level' => 'Hard', 'text' => 'What is 100 ÷ 25?', 'correct_answer' => '4'],
+            ['subject' => 'Basic Division', 'level' => 'Hard', 'text' => 'How much is 200 ÷ 50?', 'correct_answer' => '4'],
+            ['subject' => 'Basic Division', 'level' => 'Hard', 'text' => 'If you divide 250 by 5, what do you get?', 'correct_answer' => '50'],
+            ['subject' => 'Basic Division', 'level' => 'Hard', 'text' => 'What is the result of 500 ÷ 125?', 'correct_answer' => '4'],
+            ['subject' => 'Basic Division', 'level' => 'Hard', 'text' => 'How much is 750 ÷ 150?', 'correct_answer' => '5'],
         ];
 
         foreach ($questions as $question) {
@@ -98,42 +140,18 @@ class QuestionsTableSeeder extends Seeder
 
     private function getIncorrectAnswers($correct_answer)
     {
-        // Provide a list of incorrect answers based on the type of question
-        $incorrect_answers = [
-            '1' => ['0', '3', '4', '5'],
-            '2' => ['1', '3', '4', '6'],
-            '3' => ['1', '2', '4', '5'],
-            '4' => ['3', '5', '6', '7'],
-            '5' => ['2', '6', '7', '8'],
-            '6' => ['4', '5', '7', '8'],
-            '7' => ['5', '6', '8', '9'],
-            '8' => ['6', '7', '9', '10'],
-            '9' => ['7', '8', '10', '11'],
-            '10' => ['8', '9', '11', '12'],
-            '11' => ['9', '10', '12', '13'],
-            '12' => ['10', '11', '13', '14'],
-            '13' => ['11', '12', '14', '15'],
-            '14' => ['12', '13', '15', '16'],
-            '15' => ['13', '14', '16', '17'],
-            '16' => ['14', '15', '17', '18'],
-            '17' => ['15', '16', '18', '19'],
-            '18' => ['16', '17', '19', '20'],
-            '19' => ['17', '18', '20', '21'],
-            '20' => ['18', '19', '21', '22'],
-            '21' => ['19', '20', '22', '23'],
-            '22' => ['20', '21', '23', '24'],
-            '23' => ['21', '22', '24', '25'],
-            '24' => ['22', '23', '25', '26'],
-            '25' => ['23', '24', '26', '27'],
-            '26' => ['24', '25', '27', '28'],
-            '27' => ['25', '26', '28', '29'],
-            '28' => ['26', '27', '29', '30'],
-            '29' => ['27', '28', '30', '31'],
-            '30' => ['28', '29', '31', '32'],
-            // Add more mappings as necessary
-        ];
+        // Generate some simple incorrect answers based on the correct answer
+        $correct_answer = (int)$correct_answer; // Ensure it's an integer
+        $incorrect_answers = [];
 
-        // Ensure there are enough incorrect answers
-        return $incorrect_answers[$correct_answer] ?? [];
+        // Generate incorrect answers around the correct answer
+        while (count($incorrect_answers) < 3) {
+            $rand = $correct_answer + rand(-3, 3); // Generate a number near the correct answer
+            if ($rand != $correct_answer && !in_array($rand, $incorrect_answers)) {
+                $incorrect_answers[] = $rand; // Only add if it's not the correct answer and not already in the list
+            }
+        }
+
+        return $incorrect_answers;
     }
 }

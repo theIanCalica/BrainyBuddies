@@ -27,4 +27,9 @@ Route::get('/basic-addition/{difficulty}', [QuestionController::class, 'basicAdd
 
 Route::get("/basic-subtraction", [QuestionController::class, "basicSubtraction"])->name("basicSubtraction");
 Route::get("/basic-subtraction/{difficulty}", [QuestionController::class, "basicSubtractionQuiz"])->name("basicSubtractionTest");
-Route::get("/number-recognition", [QuestionController::class, "numberRecognition"])->name("numberRecognition");
+
+Route::get('/basic-multiplication', [QuestionController::class, 'basicMultiplication'])->name("basicMultiplication");
+Route::get('/basic-multiplication/{difficulty}', [QuestionController::class, 'basicMultiplicationQuiz'])->name('basicMultiplicationTest');
+
+Route::get('/basic-division', [QuestionController::class, 'basicDivision'])->name("basicDivision");
+Route::get('/basic-division/{difficulty}', [QuestionController::class, 'basicDivisionQuiz'])->name('basicDivisionTest');
