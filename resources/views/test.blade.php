@@ -1,5 +1,47 @@
 @extends('Layout.app')
 
+@section('styles')
+    <style>
+        #result-container {
+            visibility: hidden;
+            /* Initially hidden */
+            opacity: 0;
+            /* Fully transparent */
+            transition: opacity 0.5s ease-in-out;
+            /* Smooth fade-in */
+            position: relative;
+            z-index: 9999;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+        /* Custom styles for the option buttons */
+        .option-button {
+            width: 100%;
+            height: 50px;
+            font-size: 18px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid #007bff;
+            background-color: #f8f9fa;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .option-button:hover {
+            background-color: #007bff;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        #question-container {
+            margin-bottom: 20px;
+        }
+    </style>
+@endsection
 @section('content')
     <div class="container mt-4">
         <h2>Basic Addition Quiz - {{ ucfirst($difficulty) }} Level</h2>
@@ -30,29 +72,7 @@
         </div>
     </div>
 
-    <style>
-        /* Custom styles for the option buttons */
-        .option-button {
-            width: 100%;
-            height: 50px;
-            font-size: 18px;
-            margin: 10px 0;
-            border-radius: 10px;
-            border: 2px solid #007bff;
-            background-color: #f8f9fa;
-            transition: background-color 0.3s, transform 0.3s;
-        }
 
-        .option-button:hover {
-            background-color: #007bff;
-            color: white;
-            transform: scale(1.05);
-        }
-
-        #question-container {
-            margin-bottom: 20px;
-        }
-    </style>
 
     <script>
         let currentQuestionIndex = 0;
@@ -64,9 +84,9 @@
 
             // Update question text
             document.getElementById('question-container').innerHTML = `
-                <h4>${currentQuestion.text}</h4>
-                <div id="options-${currentQuestionIndex}" class="mb-3 d-flex flex-column align-items-center"></div>
-            `;
+        <h4>${currentQuestion.text}</h4>
+        <div id="options-${currentQuestionIndex}" class="mb-3 d-flex flex-column align-items-center"></div>
+    `;
 
             // Load options for the current question
             const optionsContainer = document.getElementById(`options-${currentQuestionIndex}`);
@@ -77,11 +97,11 @@
                 button.innerText = answer.text; // Use 'text' for the answer
                 button.className = 'option-button';
                 button.onclick = () => selectAnswer(answer.is_correct, currentQuestionIndex, answer
-                .text); // Pass is_correct, index, and text
+                    .text); // Pass is_correct, index, and text
                 optionsContainer.appendChild(button);
             });
 
-            // Show Next button only if it's not the last question
+            // Hide the "Next" button after the last question
             document.getElementById('next-button').style.display = (currentQuestionIndex < questions.length - 1) ? 'block' :
                 'none';
         }
@@ -97,7 +117,7 @@
                 });
             } else {
                 const correctAnswer = questions[index].answers.find(answer => answer.is_correct)
-                .text; // Get the correct answer text
+                    .text; // Get the correct answer text
                 Swal.fire({
                     title: 'Wrong!',
                     text: 'The correct answer is ' + correctAnswer,
@@ -105,21 +125,26 @@
                     confirmButtonText: 'OK'
                 });
             }
+
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
                 loadQuestion(); // Load the next question
             } else {
+                disableOptions(); // Disable options on the last question
                 showResults(); // Show results if there are no more questions
             }
         }
 
-        function showResults() {
-            document.getElementById('quiz-container').style.display = 'none'; // Hide quiz
-            document.getElementById('result-container').style.display = 'block'; // Show results
-            document.getElementById('score').innerText = score; // Display score
+        function disableOptions() {
+            // Disable all option buttons
+            const optionButtons = document.querySelectorAll('.option-button');
+            optionButtons.forEach(button => {
+                button.disabled = true;
+                button.classList.add('disabled'); // Add custom disabled styling if needed
+            });
+        }
 
-            // Display a message based on the score
-            const messageElement = document.getElementById('message');
+        function showResults() {
             let message = '';
             if (score === questions.length) {
                 message = 'Perfect score! You really know your stuff!';
@@ -130,16 +155,26 @@
             } else {
                 message = 'Keep trying! Practice makes perfect!';
             }
-            messageElement.innerText = message; // Show the message
+
+            Swal.fire({
+                title: 'Quiz Complete!',
+                html: `<h4>Your Score: ${score}/${questions.length}</h4><p>${message}</p>`,
+                icon: 'info',
+                confirmButtonText: 'Restart Quiz',
+                showCloseButton: true,
+                allowOutsideClick: false,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    restartQuiz();
+                }
+            });
         }
 
-        document.getElementById('restart-button').onclick = () => {
+        function restartQuiz() {
             currentQuestionIndex = 0;
             score = 0;
-            document.getElementById('quiz-container').style.display = 'block'; // Show quiz
-            document.getElementById('result-container').style.display = 'none'; // Hide results
-            loadQuestion(); // Load the first question
-        };
+            loadQuestion(); // Load the first question again
+        }
 
         // Load the first question on page load
         loadQuestion();
